@@ -8,10 +8,14 @@ class WazKlas():
         self.dlugosc=1
         self.kierunek=[0,1]
         self.punkty=0
+        self.kolor=(100,100,100)
+    #ustawianie koloru węża
+    def setColor(self,color):
+        self.kolor=color
     #ustalanie kierunku węża
     def setDirection(self, direction):
         self.kierunek=direction
-   
+    
     #dodawanie punktów
     def addScore(self):
         self.punkty=self.punkty+1
@@ -34,22 +38,20 @@ class WazKlas():
         #sprawdzenie położenia weża względem krawędzi
         noweWspolrzedne=self.checkBorder(zmiennaX,zmiennaY)
 
-
-        #sprawdzanie czy waz sam siebie nie ugryzl
-        #musimy sprawdzic czy pozycja glowy nie pokrywa sie(nie ma tych samych wspolrzednych)
-        #  z pozostalymi pozycjai weza 
-        for pozycja in self.pozycje [::]:
+        #sprawdzanie czy wąż sam siebie nie ugryzł
+        #musimy sprawdzić czy pozycja głowy nie pokrywa się(nie ma tych samych współrzędnych) z pozostałymi pozycjami węża
+        for pozycja in self.pozycje[::]:
             if noweWspolrzedne == pozycja:
                 self.dlugosc=1
                 self.punkty=0
-                self.pozycje=[noweWspolrzedne]        
-
+                self.pozycje=[noweWspolrzedne]
+                
         #dodanie pozycji węża do listy
         self.pozycje.append(noweWspolrzedne)
         #sprawdzenie czy wąż nie jest za długi
         if len(self.pozycje)>self.dlugosc:
             del self.pozycje[0]
-   
+    
     #sprawdzanie krawędzi okna
     def checkBorder(self,zmiennaX,zmiennaY):
          #sprawdzanie krawędzi
@@ -68,6 +70,6 @@ class WazKlas():
         #definiujemy kształ węża
             ksztaltWaz=pygame.Rect((poz[0],poz[1]),(30,30))
             #dodanie kształtu do okienka
-            pygame.draw.rect(oknoGry,(100,100,100),ksztaltWaz)
+            pygame.draw.rect(oknoGry,self.kolor,ksztaltWaz)
     def getPunkty(self):
         return self.punkty

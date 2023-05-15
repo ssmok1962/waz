@@ -9,11 +9,17 @@ import jablko
 
 #tworzenie obiektu wąż
 obiektWaz1=wazKlasa.WazKlas()
+#tworzenie drugiego węża
+obiektWaz2=wazKlasa.WazKlas()
+#tworzenie obiektu drugiego węża
 
 #utowrzenie obiektów jabłek
 #określenie ile będzie jabłek
-iloscJablek=10
-
+iloscJablek=1
+def ustawKolorWaz1(kolor):
+    obiektWaz1.setColor(kolor)
+def ustawKolorWaz2(kolor):
+    obiektWaz2.setColor(kolor)
 
 #utworzenie funkcji waz
 def waz():
@@ -30,6 +36,8 @@ def waz():
     pygame.display.set_caption("Gra Wąż")
     #tworzymy zmienną, która przechowuje informacje czy gra jest uruchomiona
     run=True
+   
+    
    
 
   
@@ -54,13 +62,23 @@ def waz():
                     obiektWaz1.setDirection([0,-1])
                 elif zdarzenia.key==pygame.K_DOWN:
                     obiektWaz1.setDirection([0,1])
+                elif zdarzenia.key==pygame.K_d:
+                    obiektWaz2.setDirection([1,0])
+                elif zdarzenia.key==pygame.K_a:
+                    obiektWaz2.setDirection([-1,0])
+                elif zdarzenia.key==pygame.K_w:
+                    obiektWaz2.setDirection([0,-1])
+                elif zdarzenia.key==pygame.K_s:
+                    obiektWaz2.setDirection([0,1])
         #ustalenie nowej pozycji węża
 
         obiektWaz1.snakeMove()
+        obiektWaz2.snakeMove()
                 
        
         #pozycja głowy weza
         glowa=obiektWaz1.getHeadPosition()
+        glowa2=obiektWaz2.getHeadPosition()
         #pobieranie pozycji jablka
         for nrJablka in obiektJablko[::]:
             pozycjaJablka=nrJablka.getCoordinates()
@@ -69,18 +87,25 @@ def waz():
                 nrJablka.randomPosition()
                 obiektWaz1.addScore()
                 obiektWaz1.addLenght()
+            if glowa2[0]==pozycjaJablka[0] and glowa2[1] == pozycjaJablka[1]:
+                nrJablka.randomPosition()
+                obiektWaz2.addScore()
+                obiektWaz2.addLenght()
 
             #rysowanie jabłka
             nrJablka.drawApple(oknoGry) 
         #rysowanie węża
         obiektWaz1.snakeDraw(oknoGry)
+        obiektWaz2.snakeDraw(oknoGry)
        
         #napisy na ekranie
         czcionka=pygame.font.SysFont('arial',25)
-        tekst=czcionka.render("Zdobyłeś punkty: {0}".format(obiektWaz1.getPunkty()),1,(51,51,255))
+        tekst=czcionka.render("Zdobyłeś punkty waz1: {0}".format(obiektWaz1.getPunkty()),1,(51,51,255))
+        tekst2=czcionka.render("Zdobyłeś punkty waz2: {0}".format(obiektWaz2.getPunkty()),1,(51,51,255))
         oknoGry.blit(tekst,(10,10))
+        oknoGry.blit(tekst2,(10,30))
         #aktualizowanie zawartości okna gry
         pygame.display.update()
 
 #wywołanie funkcji, pozwala na uruchomienie gry
-waz()
+#waz()

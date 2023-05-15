@@ -1,5 +1,6 @@
+import random
 import pygame
-
+import waz
 
 class WazKlas():
     #konstruktor klasy - uruchamia się podczas tworzenia obiektu
@@ -73,3 +74,9 @@ class WazKlas():
             pygame.draw.rect(oknoGry,self.kolor,ksztaltWaz)
     def getPunkty(self):
         return self.punkty
+    def pozarcie(self, pozycjeGlowyGryzacej):
+        for czesciCiala in self.pozycje[::]:
+            if pozycjeGlowyGryzacej[0]==czesciCiala[0] and pozycjeGlowyGryzacej[1]==czesciCiala[1]:
+                self.dlugosc=1
+                self.punkty=0
+                self.pozycje=[(random.randint(0,waz.rozdzielczosc)*30,random.randint(0,waz.rozdzielczosc)*30)]

@@ -1,5 +1,5 @@
 import random
-
+import waz
 import pygame
 
 class Jablko():
@@ -9,8 +9,8 @@ class Jablko():
         self.randomPosition()
     #losowanie pozycji jabłka i zapisanie nowej pozycji do zmiennej pozycjaJablka
     def randomPosition(self):
-        jablkoX=random.randint(0,19)*30
-        jablkoY=random.randint(0,19)*30
+        jablkoX=random.randint(0,waz.rozdzielczosc)*30
+        jablkoY=random.randint(0,waz.rozdzielczosc)*30
         self.setCoordinates(jablkoX,jablkoY)
 
     #pobranie pozycji jabłka

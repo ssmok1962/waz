@@ -9,6 +9,9 @@ import jablko
 
 
 rozdzielczosc=19
+def zmienrozdzielczosc(ilosc):
+    pygame.display.set_mode(ilosc)
+
 
 #tworzenie obiektu wąż
 obiektWaz1=wazKlasa.WazKlas()

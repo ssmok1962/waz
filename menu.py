@@ -11,6 +11,8 @@ def zmienKolorWaz1(kolor):
     waz.ustawKolorWaz1(kolor)
 def zmienKolorWaz2(kolor):
     waz.ustawKolorWaz2(kolor)
+def zmienRozdzielczosc(ilosc):
+    waz.pygame.display=ilosc;
 def main():
     pygame.init()
     #utworzenie okna gry i okreslenie jego rozmiarów
